@@ -1,0 +1,23 @@
+template <class TClass, class TInterface>
+class Factory {
+public:
+    static std::shared_ptr<TInterface> Create(){return TClass::CreateInternal();}
+};
+
+struct IThingy {
+    virtual void Method1() = 0;
+};
+
+class Thingy : 
+    public Factory<Thingy, IThingy>,
+    public IThingy {
+        //Private constructor will forces creation through a factory method
+        Thingy(){}
+public:
+        virtual void Method1(){}
+        //Actual factory method that performs work.
+        static std::shared_ptr<Thingy> CreateInternal() {return std::make_shared<Thingy>();}
+};
+
+// usage
+auto ithingy = Thingy::Create();
