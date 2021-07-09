@@ -1,0 +1,47 @@
+body {
+	font-family: 'FKCariad-Light', sans-serif;
+}
+h1, h2, h3, h4, h5 {
+	color: #442EE0;
+}
+
+a {
+	color: #1D0638;
+	text-decoration-color: #1EEF97;
+}
+
+code, .code {
+	font-size: 12pt;
+	color: #373737;
+	background-color: #FEF04A;
+}
+
+.body {
+	padding-left: 5pt;
+	font-size: 12pt;
+}
+
+.imagecontainer {
+	padding-left: 30pt;
+}
+
+.imagecaption {
+	font-size: 10pt;
+	color: #1D0638;
+}
+
+.tocsection {
+	margin-left: 10pt;
+}
+
+#sid591545603614915080 {
+	float: right;
+}
+
+#sid591545603614915080 .imagecaption {
+	display: none;
+}
+#sid6137591793160413662:before {
+	float: right;
+	content:url(logo.png)
+}
