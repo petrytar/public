@@ -16,3 +16,9 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - run: echo "asd" > devdoc.html
+      - name: Update resources
+        uses: test-room-7/action-update-file@v1
+        with:
+          file-path: devdoc.html
+          commit-msg: Update resources
+          github-token: ${{ secrets.GITHUB_TOKEN }}
