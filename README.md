@@ -1,2 +1,2 @@
 # public
-some info here
+some info here.
