@@ -16,10 +16,14 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - run: echo "asd" > devdoc.html
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
       - name: Update resources
         uses: test-room-7/action-update-file@v1
         with:
           file-path: devdoc.html
           commit-msg: Update resources
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          branch: echo ${GITHUB_REF#refs/heads/}
+          branch: eng:${{ steps.extract_branch.outputs.branch }}
