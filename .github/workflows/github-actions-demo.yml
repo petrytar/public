@@ -26,4 +26,4 @@ jobs:
           file-path: devdoc.html
           commit-msg: Update resources
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ steps.extract_branch.outputs.branch }}
+          branch: ${{ GITHUB_REF }}
