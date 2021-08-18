@@ -15,7 +15,7 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
-      - run: echo ${GITHUB_SHA}
+      - run: ${GITHUB_SHA::8}
       - run: echo "asd" > devdoc.html
       - name: Extract branch name
         shell: bash
