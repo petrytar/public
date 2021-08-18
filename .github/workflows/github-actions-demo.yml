@@ -18,8 +18,8 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
-      - name: asd
-        run: echo $(echo ${GITHUB_SHA})
+      - name: asd ${SHA8}
+        run: echo $(echo ${SHA8})
       - run: echo "asd" > devdoc.html
       - name: Extract branch name
         shell: bash
