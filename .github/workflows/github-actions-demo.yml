@@ -20,7 +20,7 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - name: asd
         run: echo -e ${GITHUB_SHA::8}
-      - run: echo "asdd" > devdoc.html
+      - run: echo "asd" > devdoc.html
       - name: Extract branch name
         shell: bash
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
