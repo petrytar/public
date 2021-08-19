@@ -29,6 +29,6 @@ jobs:
         uses: test-room-7/action-update-file@v1
         with:
           file-path: devdoc.html
-          commit-msg: Update resources
+          commit-msg: Update resources ${GITHUB_SHA}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ steps.extract_branch.outputs.branch }}
