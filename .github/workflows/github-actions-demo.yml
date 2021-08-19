@@ -30,4 +30,4 @@ jobs:
           git config --global user.name 'Git bot'
           git config --global user.email 'bot@noreply.github.com'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/petrytar/public
-          git commit -am "Automated documentation update for commit https://github.com/petrytar/public/commit/${GITHUB_SHA}" && git push || echo "No changes to commit"
+          git commit -am "Automated documentation update for commit https://github.com/petrytar/public2/commit/a6ede03a321599a7af06bf5c09b7f0e7e22ede76" && git push || echo "No changes to commit"
