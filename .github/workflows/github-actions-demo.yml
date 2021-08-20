@@ -18,7 +18,7 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
-      - run: echo "asdd" > devdoc.html
+      - run: echo "asd" > devdoc.html
       - name: Extract branch name
         shell: bash
         run: echo "##[set-output name=hash;]$(echo -e ${GITHUB_SHA})"
@@ -29,7 +29,6 @@ jobs:
         run: |
           echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
           echo "::set-output name=sha_short::$(git rev-parse HEAD)"
-
       - name: Another step
         run: |
           echo "Branch: ${{ steps.vars.outputs.branch }}"
