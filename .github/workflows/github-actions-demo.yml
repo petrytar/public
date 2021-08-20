@@ -20,14 +20,12 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - name: asd
         run: echo -e ${GITHUB_SHA::8}
-      - run: echo "assdd" > devdoc.html
+      - run: echo "asd" > devdoc.html
       - name: Extract branch name
         shell: bash
-        run: echo "##[set-output name=hash;]echo ${GITHUB_SHA}"
+        run: echo "##[set-output name=hash;]echo -e ${GITHUB_SHA}"
         id: extract_hash
       - name: Automated documentation update
-        env:
-          GITHUB_COMMIT: ${GITHUB_SHA}
         run: |
           git config --global user.name 'Git bot'
           git config --global user.email 'bot@noreply.github.com'
