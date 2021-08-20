@@ -23,7 +23,7 @@ jobs:
       - run: echo "asd" > devdoc.html
       - name: Extract branch name
         shell: bash
-        run: echo "##[set-output name=hash;]echo -e ${GITHUB_SHA}"
+        run: echo "##[set-output name=hash;]$(echo -e ${GITHUB_SHA})"
         id: extract_hash
       - name: Automated documentation update
         run: |
