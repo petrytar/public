@@ -20,14 +20,16 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - name: asd
         run: echo -e ${GITHUB_SHA::8}
-      - run: echo "asd" > devdoc.html
+      - run: echo "asdd" > devdoc.html
       - name: Extract branch name
         shell: bash
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         id: extract_branch
       - name: Automated documentation update
+        env:
+          GITHUB_COMMIT: ${{GITHUB_SHA}}
         run: |
           git config --global user.name 'Git bot'
           git config --global user.email 'bot@noreply.github.com'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/petrytar/public
-          git commit -am "Automated documentation update for commit https://github.com/petrytar/public/commit/${GITHUB_SHA}" && git push || echo "No changes to commit"
+          git commit -am "Automated documentation update for commit https://github.com/petrytar/public/commit/$GITHUB_COMMIT" && git push || echo "No changes to commit"
