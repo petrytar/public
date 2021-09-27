@@ -30,7 +30,9 @@ jobs:
           echo "Branch: ${{ steps.vars.outputs.branch }}"
           echo "Sha: ${{ steps.vars.outputs.sha }}"
       - name: Check npm existence
-        run: npm i -g @koumoul/gh-pages-multi
+        run: |
+          npm i -g @koumoul/gh-pages-multi
+          gh-pages-multi deploy -s asd -t v1.0.0
       - name: Automated documentation update
         run: |
           git config --global user.name 'Git bot'
