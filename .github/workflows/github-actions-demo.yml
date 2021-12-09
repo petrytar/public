@@ -3,7 +3,24 @@ on: [push]
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
+    env:
+      SHA8: ${GITHUB_SHA::8}
+      DISTRIBUTION_DIR: ./build/distributions/
+
     steps:
+      - name: Store vars
+        id: names
+        shell: bash
+        run: |
+          touch asd
+          touch asd2
+          export rcp_names=( $(ls) )
+          echo ${rcp_names}
+          echo "::set-output name=distribution::${DISTRIBUTION_DIR}"
+      - name: Test env vars
+        run: |
+          echo ${{ steps.names.outputs.distribution }}
+          echo ${rcp_names}
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
@@ -15,3 +32,27 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+      - run: echo "asd" > devdoc.html
+      - name: Declare some variables
+        id: vars
+        shell: bash
+        run: |
+          echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+          echo "::set-output name=sha::$(git rev-parse HEAD)"
+      - name: Another step
+        run: |
+          echo "Branch: ${{ steps.vars.outputs.branch }}"
+          echo "Sha: ${{ steps.vars.outputs.sha }}"
+      - name: Check npm existence
+        run: |
+          npm i -g @koumoul/gh-pages-multi
+          git config --global user.name 'Git bot'
+          git config --global user.email 'bot@noreply.github.com'
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/petrytar/public
+          gh-pages-multi deploy -s asd -t v2.0.0
+      - name: Automated documentation update
+        run: |
+          git config --global user.name 'Git bot'
+          git config --global user.email 'bot@noreply.github.com'
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/petrytar/public
+          git commit -am "Automated documentation update for commit https://github.com/petrytar/public/commit/${{ steps.vars.outputs.sha }}" && git push || echo "No changes to commit"
