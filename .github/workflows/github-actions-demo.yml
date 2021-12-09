@@ -16,8 +16,10 @@ jobs:
           touch asd2
           export rcp_names=( $(ls) )
           echo ${rcp_names}
+          echo "::set-output name=distribution::${DISTRIBUTION_DIR}"
       - name: Test env vars
         run: |
+          echo ${{ steps.names.outputs.distribution }}
           echo ${rcp_names}
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
