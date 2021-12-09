@@ -10,11 +10,14 @@ jobs:
       ART_FOLDER: $(date +'%Y-%m-%d_%H:%M')_$(git rev-parse --short HEAD)
 
     steps:
+      - name: Store vars
+        id: names
+        shell: bash
+        run: |
+          echo "::set-output name=rcp_names::( $(ls) )"
       - name: Test env vars
         run: |
-          echo $DISTRIBUTION_DIR
-          echo `$BRANCH_NAME`
-          echo `$ART_FOLDER`
+          echo ${{ steps.names.outputs.art_folder }}
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
