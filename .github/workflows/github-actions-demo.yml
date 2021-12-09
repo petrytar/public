@@ -12,6 +12,7 @@ jobs:
         id: names
         shell: bash
         run: |
+          ls -la
           export rcp_names=( $(ls) )
           echo ${rcp_names}
       - name: Test env vars
