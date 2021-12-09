@@ -13,6 +13,7 @@ jobs:
         shell: bash
         run: |
           export rcp_names=( $(ls) )
+          echo ${rcp_names}
       - name: Test env vars
         run: |
           echo ${rcp_names}
